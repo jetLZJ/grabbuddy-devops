@@ -35,7 +35,7 @@
     "react-dom": "^16.8.6",
     "react-placeholder-image": "^0.1.8",
     "react-router-dom": "^5.2.0",
-    "react-scripts": "^3.4.4",
+    "react-scripts": "^4.0.3",
     "reactstrap": "^8.0.0",
     "serve": "^13.0.2"
   },

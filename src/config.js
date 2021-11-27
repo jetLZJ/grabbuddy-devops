@@ -8,13 +8,13 @@ export function getConfig() {
   // If this resolves to `null`, the API page changes to show some helpful info about what to do
   // with the audience.
   const audience =
-    configJson.audience && configJson.audience !== "YOUR_API_IDENTIFIER"
-      ? configJson.audience
+  process.env.REACT_APP_AUTH0_AUDIENCE && process.env.REACT_APP_AUTH0_AUDIENCE !== "YOUR_API_IDENTIFIER"
+      ? process.env.REACT_APP_AUTH0_AUDIENCE
       : null;
 
   return {
-    domain: configJson.domain,
-    clientId: configJson.clientId,
-    ...(audience ? { audience } : null),
+    domain: process.env.PORTREACT_APP_AUTH0_DOMAIN,
+    clientId: process.env.PORTREACT_APP_AUTH0_CLIENTID,
+    ...(audience ?  process.env.REACT_APP_AUTH0_AUDIENCE  : null),
   };
 }

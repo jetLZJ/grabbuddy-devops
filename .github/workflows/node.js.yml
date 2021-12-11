@@ -30,6 +30,7 @@ jobs:
         AUDIENCE: ${{ secrets.AUDIENCE }}
         DOMAIN: ${{ secrets.DOMAIN }}
         CLIENTID: ${{ secrets.CLIENTID }}
+        CI: false
     - run: npm ci
     - run: npm run build --if-present
     - run: npm test

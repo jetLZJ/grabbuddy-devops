@@ -33,4 +33,3 @@ jobs:
         DOMAIN: ${{ secrets.DOMAIN }}
         CLIENTID: ${{ secrets.CLIENTID }}
         CI: false
-    - run: npm test

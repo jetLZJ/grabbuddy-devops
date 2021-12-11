@@ -10,12 +10,12 @@ export function getConfig() {
   const audience =
     configJson.audience && configJson.audience !== "YOUR_API_IDENTIFIER"
       ? configJson.audience
-      : null;
+      : ${{ secrets.AUDIENCE}};
 
   return {
-    domain: configJson.domain,
+    domain: ${{ secrets.DOMAIN}},
     returnTo: process.env.PUBLIC_URL,
-    clientId: configJson.clientId,
+    clientId: ${{secrets.CLIENTID}},
     ...(audience ? { audience } : null),
   };
 }

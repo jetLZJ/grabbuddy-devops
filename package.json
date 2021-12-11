@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "serve -s build",
-    "build": "CI= false react-scripts build",
+    "build": "react-scripts build",
     "test": "react-scripts test --env=jest-environment-jsdom-sixteen",
     "eject": "react-scripts eject",
     "spa": "serve -s build",

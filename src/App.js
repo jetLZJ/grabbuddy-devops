@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect  } from "react";
 import { Router, Route, Switch } from "react-router-dom";
 import { Container } from "reactstrap";
 
@@ -11,15 +11,40 @@ import balance from "./views/balance";
 import ExternalApi from "./views/ExternalApi";
 import { useAuth0 } from "@auth0/auth0-react";
 import history from "./utils/history";
+import { createTheme, responsiveFontSizes } from '@mui/material/styles';
 
 // styles
 import "./App.css";
 
 // fontawesome
 import initFontAwesome from "./utils/initFontAwesome";
+import { ThemeProvider } from "@emotion/react";
 initFontAwesome();
 
 const App = () => {
+
+
+
+  let theme = createTheme();
+  theme = responsiveFontSizes(theme);
+
+  const [user1, setUser] = useState(null);
+
+  // + adding the use
+useEffect(() => {
+  getData();
+
+  // we will use async/await to fetch this data
+  async function getData() {
+    const response = await fetch("https://api-test-buddy.glitch.me/api/users/by-id?id=1");
+    const data = await response.json();
+
+    // store the data into our books variable
+    setUser(data) ;
+  }
+}, []);
+
+
   const { isLoading, error } = useAuth0();
 
   if (error) {
@@ -31,9 +56,10 @@ const App = () => {
   }
 
   return (
+    <ThemeProvider theme={theme}>
     <Router history={history}>
       <div id="app" className="d-flex flex-column h-100">
-        <NavBar />
+        <NavBar  />
         <Container className="flex-grow-1 mt-5">
           <Switch>
             <Route path="/" exact component={Home} />
@@ -45,6 +71,7 @@ const App = () => {
         <Footer />
       </div>
     </Router>
+    </ThemeProvider>
   );
 };
 

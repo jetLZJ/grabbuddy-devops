@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, } from "react";
 
 import { Row, Col } from "reactstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -12,43 +12,151 @@ import { generatePhotoPlaceholderURL } from 'react-placeholder-image';
 import CardFooter from "reactstrap/lib/CardFooter";
 import { NavLink as RouterNavLink } from "react-router-dom";
 import { Progress, Container } from "reactstrap";
+import EnhancedTable from "./TransactionDataTable";
+import Chart from "react-google-charts";
+
+
 
 
 
 class Content extends Component {
+  constructor(props){
+    super(props)
+    this.state = {
+      transactionData:[],
+      total:0,
+      gameTotal:0,
+      foodTotal:0,
+      transferTotal:0,
+      othersTotal:0,
+      limit:0
+    }
+  }
+  
 
+
+componentDidMount() {
+    fetch('https://api-test-buddy.glitch.me/api/transactions/all')
+      .then(response => response.json())
+      .then(data => { console.log(data);
+        this.setState({
+          transactionData: data
+        }, ()=>{console.log(this.state.transactionData)
+        });
+  });
+}
+
+calculateTotal(){
+  let total = 0;
+  for(var i=0;i<this.state.transactionData.length;i++){
+    total += this.state.transactionData[i].transaction_amount;
+  }
+  return total;
+}
+
+
+calculateGameTotal(){
+  let total = 0;
+  for(var i=0;i<this.state.transactionData.length;i++){
+    if(this.state.transactionData[i].category === "GAME")
+    total += this.state.transactionData[i].transaction_amount;
+  }
+  return total;
+}
+
+calculateFoodTotal(){
+  let total = 0;
+  for(var i=0;i<this.state.transactionData.length;i++){
+    if(this.state.transactionData[i].category === "FOOD")
+    total += this.state.transactionData[i].transaction_amount;
+  }
+  return total;
+}
+
+calculateSourceTotal(){
+  let total = 0;
+  for(var i=0;i<this.state.transactionData.length;i++){
+    if(this.state.transactionData[i].category === "SOURCE")
+    total += this.state.transactionData[i].transaction_amount;
+  }
+  return total;
+}
+
+calculateOthersTotal(){
+
+  return this.calculateSpendingsTotal() - this.calculateFoodTotal() - this.calculateGameTotal();
+}
+
+calculateSpendingsTotal(){
+
+  return this.calculateTotal() - this.calculateSourceTotal() ;
+}
   
   render() {
+
 
   
     return (
         <div className="next-steps p-5">
         <Card className="text-center mb-5 h-100 w-100'"  style={{cursor : 'pointer' }}>
           
-          <CardHeader className="">You have spent {"$32"} this month!</CardHeader>
+          <CardHeader className="h1">You have spent $ {this.calculateSpendingsTotal()} this month!</CardHeader>
           
           <Row>
             <Col></Col>
           </Row>
           <CardBody>
+          
           <Row className="d-flex justify-content-between">
-            <Col>
-              <CardImg  src={generatePhotoPlaceholderURL(200, 100)}></CardImg>
-            </Col>
-            <Col md={5} className="mb-4  align-content-between h-100 w-100">
-
-              <Progress  color="success" value="30" className="mb-4">
+            <Col md={5}  className="mb-4 d-flex align-items-center h-100 w-100">
+            {/* <Progress  color="success" value={this.calculateGameTotal()/this.calculateTotal()*100} className="mb-4">
                 Gaming
               </Progress>
-              <Progress  color="info" value="25" className="mb-4">
+              <Progress  color="info" value={this.calculateFoodTotal()/this.calculateTotal()*100} className="mb-4">
                 Food
               </Progress>
-              <Progress  color="warning" value="20" className="mb-4">
-                Transport
-              </Progress>
-              <Progress  color="danger" value="5" className="mb-4">
-                !!
-              </Progress>
+              <Progress  color="warning" value={this.calculateOthersTotal()/this.calculateTotal()*100} >
+                Others
+              </Progress> */}
+            <Chart
+   width={400}
+   height={300}
+  chartType="PieChart"
+  loader={<div>Loading Chart</div>}
+  data={[
+    ['Spendings', 'Amount in $'],
+    ['Game', this.calculateGameTotal()],
+    ['Food', this.calculateFoodTotal()],
+    ['Others', this.calculateOthersTotal()]
+  ]}
+  options={{
+    title: 'Your Spendings Breakdown',
+  }}
+  rootProps={{ 'data-testid': '1' }}
+/>
+
+
+            </Col>
+            <Col md={5} className="mb-4 align-items-center h-100 w-100">
+              
+            <Chart
+   width={400}
+   height={300}
+ chartType="PieChart"
+ loader={<div>Loading Chart</div>}
+ data={[
+   ['Balance', 'Amount in $'],
+   ['Source', this.calculateSourceTotal()],
+   ['Spendings', this.calculateSpendingsTotal()],
+ ]}
+ options={{
+   title: 'Your Balance Breakdown',
+ }}
+ rootProps={{ 'data-testid': '1' }}
+/>
+
+
+
             </Col>
           </Row>
 
@@ -56,24 +164,7 @@ class Content extends Component {
           <CardFooter></CardFooter>
           </Card>
 
-        <Row className="d-flex justify-content-between">
-          {contentData.map((col, i) => (
-            <Col key={i} md={5} className="mb-4" style={{cursor : 'pointer' }}>
-              
-              <Card className="text-center mb-5 h-100 w-100'">
-              
-              
-                <CardHeader className="">{col.title}</CardHeader>
-
-                <CardImg  src={generatePhotoPlaceholderURL(200, 100)}></CardImg>
-                <CardBody>
-                  { isNaN(col.description)?col.description: ""}
-                  </CardBody>
-                <CardFooter>{col.description}</CardFooter>
-              </Card>
-            </Col>
-          ))}
-        </Row>
+        <EnhancedTable />
       </div>
     );
   }

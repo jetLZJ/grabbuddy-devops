@@ -1,5 +1,5 @@
 {
-  "domain": ${{ secrets.DOMAIN }},
-  "clientId": ${{ secrets.CLIENTID }},
-  "audience": ${{ secrets.AUDIENCE }}
+  "domain": "",
+  "clientId": "",
+  "audience": ""
 }

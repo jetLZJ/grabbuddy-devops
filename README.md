@@ -1,3 +1,11 @@
+#Devops show and tell for Grab-Buddy
+
+
+
+Below MD documents are created as part of the sample we used for Auth0 integration for our project.
+
+
+
 # Auth0 React SDK Sample Application
 
 This sample demonstrates the integration of [Auth0 React SDK](https://github.com/auth0/auth0-react) into a React application created using [create-react-app](https://reactjs.org/docs/create-a-new-react-app.html). The sample is a companion to the [Auth0 React SDK Quickstart](https://auth0.com/docs/quickstart/spa/react).

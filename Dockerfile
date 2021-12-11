@@ -1,7 +1,7 @@
 FROM node:16-alpine as build
 
 RUN apk update && apk upgrade && \
-  apk add --no-cache bash git openssh yarn
+  apk add --update npm
 
 RUN mkdir /app
 
@@ -9,11 +9,11 @@ WORKDIR /app
 
 COPY package.json .
 
-RUN yarn install
+RUN npm install
 
 COPY . .
 
-RUN yarn build
+RUN npm build
 
 # ---------------
 
@@ -21,13 +21,13 @@ FROM node:16-alpine
 
 RUN mkdir -p /app/build
 
-RUN apk update && apk upgrade && apk add yarn git
+RUN apk update && apk upgrade && apk add --update npm
 
 WORKDIR /app
 
 COPY --from=build /app/package.json .
 
-RUN yarn install --production
+RUN npm install --production
 
 COPY --from=build /app/build ./build
 COPY --from=build /app/src/auth_config.json ./src/auth_config.json

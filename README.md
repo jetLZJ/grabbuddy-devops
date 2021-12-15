@@ -1,5 +1,26 @@
 # Devops show and tell for Grab-Buddy
 
+## Purpose
+- To auto trigger CI when project is updated and push project to GCloud App Engine for deployment
+
+## GCloud Setup
+- After pulling the project, go into working directory and do the following command 
+
+```bash
+gcloud init
+```
+- Follow the init process to setup. (Note* : requires GCloud CLI to be installed, which can be found here [CloudSDK] https://cloud.google.com/sdk/docs/install)
+- After init process, run the following command to deploy to gcloud app engine.
+
+```bash
+gcloud app deploy
+```
+- Prior to deploying app, please setup `app.yaml` as that is required for app engine to be configured.
+
+
+
+
+
 
 
 Below MD documents are created as part of the sample we used for Auth0 integration for our project.

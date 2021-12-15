@@ -1,5 +1,5 @@
 {
-  "domain": "",
-  "clientId": "",
-  "audience": ""
+  "domain": "dev-atxi2549.us.auth0.com",
+  "clientId": "q3eSo2BpUIZD2Qb1jmRxzYiBKrjPNCEz",
+  "audience": "http://localhost:8080/api/api/private"
 }

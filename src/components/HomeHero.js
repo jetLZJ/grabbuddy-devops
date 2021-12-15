@@ -31,7 +31,7 @@ const Hero = () => {
         </div>
         <div className="d-flex flex-column justify-content-flex-end align-self-end p-2 w-100 text-right"  style={{gap: "1rem"}}>
           
-          <h1 className="p-2 text-light" >Hi {user.name.toString()} !</h1>
+          <h1 className="p-2 text-light" >Hi {user.name.toString()} ! test update with git actions</h1>
           <img className="align-self-center filter-white" src={logo} width="100%" height="auto" alt="Grab Logo"/>
           <h2 className="p-2 text-light" >Next top up is on { new Date(user.updated_at).toLocaleDateString()/* replace this with top-up date */}</h2> 
         </div>

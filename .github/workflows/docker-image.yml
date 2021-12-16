@@ -2,7 +2,9 @@ name: Docker
 
 on:
   push:
-    branches: [ main ]
+    paths:
+      - 'src/components/**'
+
   pull_request:
     branches: [ main ]
 

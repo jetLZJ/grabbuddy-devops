@@ -1,4 +1,4 @@
-name: Grab-Buddy.js CI
+name: Grab-Buddy CI
 
 on:
   push:

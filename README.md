@@ -26,18 +26,18 @@ gcloud app deploy
 ```
 - Prior to deploying app, please setup `app.yaml` as that is required for app engine to be configured. My config for `app.yaml` can be found at (https://github.com/jetLZJ/grabbuddy-devops/blob/main/app.yaml)
 
-##Git Actions
+## Git Actions
 
  - Workflow file can be found at (https://github.com/jetLZJ/grabbuddy-devops/blob/main/.github/workflows/grab-buddy-gae.yml)
  - Based off the template work flow found at (https://github.com/actions/starter-workflows/blob/00db25fc1e0c3432105036075404c4429dfda403/ci/node.js.yml)
  - Credentials are stored at Git Secrets
   - ![image](https://user-images.githubusercontent.com/35041975/146370591-85664523-45e1-457b-835a-4e4f9b1f5865.png)
 
-##Difficulties faced
+## Difficulties faced
  - Configuring workflow file to integrate with Google App Engine SDK
  - Passing environment values to deployed APP engine environment (still figuring, current implementation for auth0 credential is not secure)
  
- ##Trying out
+ ## Trying out
  - Setup up a workflow to auto containerise code upon repo updates (
   - *using workflow template from (https://github.com/actions/starter-workflows/blob/00db25fc1e0c3432105036075404c4429dfda403/ci/docker-image.yml)
   - Container can build successfully but have trouble implementing deployment to cloud run after that.

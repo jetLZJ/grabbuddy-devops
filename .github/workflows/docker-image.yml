@@ -10,7 +10,7 @@ jobs:
 
     deploy:
         
-        name: Setup Gcloud Account
+        name: Docker Build and push to Google CLoud Run
         runs-on: ubuntu-latest
         env:
           IMAGE_NAME: gcr.io/${{ secrets.GCP_PROJECT }}/fintech-devops

@@ -15,12 +15,9 @@ jobs:
         env:
           IMAGE_NAME: gcr.io/${{ secrets.GCP_PROJECT }}/fintech-devops
         steps:
-        
-        - name: Checkout repository
-          uses: actions/checkout@v2
-
+      
         - name: Login
-          uses: GoogleCloudPlatform/github-actions/setup-gcloud@master
+          uses: google-github-actions/setup-gcloud@master
           with:
             project_id: ${{ secrets.GCP_PROJECT }}
             service_account_email: ${{ secrets.GCP_SERVICE_EMAIL }}
@@ -29,6 +26,8 @@ jobs:
         - name: Configure Docker
           run: gcloud auth configure-docker --quiet
 
+        - name: Checkout repository
+          uses: actions/checkout@v2
 
         - name: Build Docker image
           run: docker build . -t $IMAGE_NAME

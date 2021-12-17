@@ -9,7 +9,6 @@ on:
     branches: [ main ]
 
 jobs:
-
     deploy:
         
         name: Docker Build and push to Google CLoud Run
@@ -30,6 +29,14 @@ jobs:
 
         - name: Checkout repository
           uses: actions/checkout@v2
+          
+        - name: Add in Auth0 Credential
+          run: jq '.domain = $d | .clientId = $c | .audience = $a' src/auth_config.json --arg a "$AUDIENCE" --arg c "$CLIENTID" --arg d "$DOMAIN"
+          env:
+            AUDIENCE: ${{ secrets.AUDIENCE }}
+            DOMAIN: ${{ secrets.DOMAIN }}
+            CLIENTID: ${{ secrets.CLIENTID }} 
+          
 
         - name: Build Docker image
           run: docker build . -t $IMAGE_NAME

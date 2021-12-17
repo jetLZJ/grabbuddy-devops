@@ -26,27 +26,7 @@ jobs:
           AUDIENCE: ${{ secrets.AUDIENCE }}
           DOMAIN: ${{ secrets.DOMAIN }}
           CLIENTID: ${{ secrets.CLIENTID }}
-      - name: Set Auth0 Domain 
-        uses: jossef/action-set-json-field@v1
-        with: 
-          file: src/auth_config.json
-          field: domain
-          value: ${{ secrets.DOMAIN }}
-        
-      - name: Set Auth0 ClientID 
-        uses: jossef/action-set-json-field@v1
-        with: 
-          file: src/auth_config.json
-          field: clientId
-          value: ${{ secrets.CLIENTID }}
-
-
-      - name: Set Auth0 Audience 
-        uses: jossef/action-set-json-field@v1
-        with: 
-          file: src/auth_config.json
-          field: audience
-          value: ${{ secrets.AUDIENCE }}
+    
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v2
         with:

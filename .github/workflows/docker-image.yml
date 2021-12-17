@@ -30,8 +30,11 @@ jobs:
         - name: Checkout repository
           uses: actions/checkout@v2
           
+        - name: Install moreutil for linux
+          run: sudo apt-get install moreutils
+          
         - name: Add in Auth0 Credential
-          run: jq '.domain = $d | .clientId = $c | .audience = $a' src/auth_config.json --arg a "$AUDIENCE" --arg c "$CLIENTID" --arg d "$DOMAIN"
+          run: jq --arg a "$AUDIENCE" --arg c "$CLIENTID" --arg d "$DOMAIN" '.domain = $d | .clientId = $c | .audience = $a' src/auth_config.json|sponge src/auth_config.json 
           env:
             AUDIENCE: ${{ secrets.AUDIENCE }}
             DOMAIN: ${{ secrets.DOMAIN }}

@@ -32,8 +32,12 @@ jobs:
           DOMAIN: ${{ secrets.DOMAIN }}
           CLIENTID: ${{ secrets.CLIENTID }}
           CI : false
-      - name: echo json
-        run: jq '.' src/auth_config.json
+      - name: Add in Auth0 Credential
+        run: jq '.domain = "$DOMAIN" | .clientId = "$CLIENTID" | .audience = "$AUDIENCE"' src/auth_config.json
+        env:
+          AUDIENCE: ${{ secrets.AUDIENCE }}
+          DOMAIN: ${{ secrets.DOMAIN }}
+          CLIENTID: ${{ secrets.CLIENTID }}
           
       - name: Setup Google Cloud SDK
         uses: google-github-actions/setup-gcloud@v0.2.0

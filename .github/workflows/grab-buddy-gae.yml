@@ -41,14 +41,14 @@ jobs:
       - name: Set Auth0 Domain 
         uses: jossef/action-set-json-field@v1
         with: 
-          file: src/auth.json
+          file: src/auth_config.json
           field: domain
           value: ${{ secrets.DOMAIN }}
         
       - name: Set Auth0 ClientID 
         uses: jossef/action-set-json-field@v1
         with: 
-          file: src/auth.json
+          file: src/auth_config.json
           field: clientId
           value: ${{ secrets.CLIENTID }}
 
@@ -56,7 +56,7 @@ jobs:
       - name: Set Auth0 Audience 
         uses: jossef/action-set-json-field@v1
         with: 
-          file: src/auth.json
+          file: src/auth_config.json
           field: audience
           value: ${{ secrets.AUDIENCE }}
       

@@ -2,6 +2,8 @@
 
 ## Objective
 - To auto trigger CI when project is updated and push project to GCloud App Engine / Cloud Run for deployment
+   ![image](https://user-images.githubusercontent.com/35041975/146471697-13d6ae09-41b7-460b-ac82-83f81b108023.png)
+
 - App Engine deployment is at [App Engine](https://fintech-devops.as.r.appspot.com/).
 - Cloud Run Deployment is at [Cloud Run](https://grabbuddy-devops-zd3frsi5vq-as.a.run.app)
 

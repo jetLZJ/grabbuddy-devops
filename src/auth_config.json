@@ -1,5 +1,5 @@
 {
-  "domain": "",
-  "clientId": "",
-  "audience": ""
+  "domain": "test",
+  "clientId": "test",
+  "audience": "test"
 }

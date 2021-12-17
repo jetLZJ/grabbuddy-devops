@@ -35,8 +35,8 @@ npm install
 npm run build
 ```
 
-### GCloud Setup
-- After settiing up the project, go into working directory and do the following command 
+### GCloud Setup (App Engine)
+- After setting up the project, go into working directory and do the following command 
 
 ```bash
 gcloud init
@@ -55,6 +55,9 @@ gcloud app deploy
 - Prior to deploying app, please setup `app.yaml` as that is required for app engine to be configured. My config for `app.yaml` can be found at [app.yml](https://github.com/jetLZJ/grabbuddy-devops/blob/main/app.yaml)
 - Also, gcloud integration with git actions requires google cloud service account to be setup, which can be setup under the [IAM service](https://console.cloud.google.com/iam-admin/) in your google cloud console.
  ![image](https://user-images.githubusercontent.com/35041975/146468349-969c06a1-e1da-4a86-b0d2-ad4fa00eb782.png)
+- Another pre-requisite would be enable the APIs required. (For this project App Engine Admin and Cloud Run Admin)
+- ![image](https://user-images.githubusercontent.com/35041975/146473754-b7554e54-d5ea-4023-98f3-2fe1ae23d4fb.png)
+
 
 
 ### Git Actions

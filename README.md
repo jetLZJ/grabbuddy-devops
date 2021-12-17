@@ -69,8 +69,8 @@ gcloud app deploy
  - Passing environment values to deployed APP engine environment (still figuring, current implementation for auth0 credential is not secure)
  
  ## Trying out
- - ~~Setup up a workflow to auto containerise code upon repo updates
-  - ~~*using workflow template from [docker-image workflow](https://github.com/actions/starter-workflows/blob/00db25fc1e0c3432105036075404c4429dfda403/ci/docker-image.yml)*
+ - ~~Setup up a workflow to auto containerise code upon repo updates (Got it working)~~ 
+  - ~~*using workflow template from [docker-image workflow](https://github.com/actions/starter-workflows/blob/00db25fc1e0c3432105036075404c4429dfda403/ci/docker-image.yml)* (Got it working)~~
   - Container can build successfully but have trouble implementing deployment to cloud run after that.
   - Using [Cloud Build](https://cloud.google.com/build), am able to pull projects from git and deploy on [Cloud Run](https://cloud.google.com/run)
 

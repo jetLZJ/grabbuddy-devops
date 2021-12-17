@@ -17,6 +17,8 @@ jobs:
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
     steps:
+      - name: Install jq
+        run: sudo apt-get install jq
       - uses: actions/checkout@v2
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v2
@@ -30,6 +32,8 @@ jobs:
           DOMAIN: ${{ secrets.DOMAIN }}
           CLIENTID: ${{ secrets.CLIENTID }}
           CI : false
+      - name: echo json
+        run: jq '.' src/auth_config.json
           
       - name: Setup Google Cloud SDK
         uses: google-github-actions/setup-gcloud@v0.2.0

@@ -17,8 +17,6 @@ jobs:
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
     steps:
-      - name: Install jq
-        run: sudo apt-get install jq
       - uses: actions/checkout@v2
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v2
@@ -33,7 +31,7 @@ jobs:
           CLIENTID: ${{ secrets.CLIENTID }}
           CI : false
       - name: Add in Auth0 Credential
-        run: jq '.domain = $d | .clientId = $c | .audience = $a' src/auth_config.json --arg a "$AUDIENCE" --arg c "$CLIENTID" --arg d "$DOMAIN"
+        run: jq '.domain = $d | .clientId = $c | .audience = $a' src/auth_config.json|sponge src/auth_config.json --arg a "$AUDIENCE" --arg c "$CLIENTID" --arg d "$DOMAIN"
         env:
           AUDIENCE: ${{ secrets.AUDIENCE }}
           DOMAIN: ${{ secrets.DOMAIN }}

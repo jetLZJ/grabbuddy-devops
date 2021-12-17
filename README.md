@@ -7,11 +7,14 @@
 
 ## The Project
 
-This project is a fork from [Batch 14 Grab Buddy](https://github.com/williamng95/grabbuddy/), group 4 NUS Money app frontend section, which is based off [auth0=react](https://github.com/auth0/auth0-react). The project utilise [create-react-app](https://github.com/facebook/create-react-app) and therefore already have some codebase for CI and docker implementation. I have work on top of it in order to implement git actions workflow with the project.
+This project is a fork from [Batch 14 Grab Buddy](https://github.com/williamng95/grabbuddy/), group 4 NUS Money app frontend section, which is based off [auth0-react](https://github.com/auth0/auth0-react). The project utilise [create-react-app](https://github.com/facebook/create-react-app) and therefore already have some codebase for CI and docker implementation. I have work on top of it in order to implement git actions workflow with the project.
 
 ## Demo
 
 - As the build takes some time, I recommend do a trigger and I will walk through the show and tell before coming back to see the result of the deployment.
+- Login account for the demo can be either a google account or the follow credentials.
+  - login ID : john@tan.com 
+  - Pass : johntan
 - To trigger the git actions workflow, edit any files within src/components. ( I recommend editing the [homeHero.js](https://github.com/jetLZJ/grabbuddy-devops/blob/main/src/components/HomeHero.js))
 
 ## SETUP

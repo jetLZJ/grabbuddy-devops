@@ -33,7 +33,7 @@ jobs:
           CLIENTID: ${{ secrets.CLIENTID }}
           CI : false
       - name: Add in Auth0 Credential
-        run: jq '.domain=$DOMAIN | clientId =$CLIENTID | .audience = $AUDIENCE' src/auth_config.json 
+        run: jq '.domain = $d | .clientId = $c | .audience = $a' src/auth_config.json --arg a "$AUDIENCE" --arg c "$CLIENTID" --arg d "$DOMAIN"
         env:
           AUDIENCE: ${{ secrets.AUDIENCE }}
           DOMAIN: ${{ secrets.DOMAIN }}
